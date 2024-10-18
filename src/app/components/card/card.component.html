@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
+    <h6 class="capitalize text-textBlue font-semibold">{{ task.todo }}</h6>
+    <h6 class="capitalize text-[#71b4f3] text-sm">{{ task.time | date: 'dd-MMM-yy' }}</h6>
+    <div class="flex justify-between">
+      <ng-container [ngSwitch]="task.priority">
+        <span *ngSwitchCase="'High'" class="bg-pink-100 text-pink-500 text-sm w-fit font-medium px-4 py-1.5 rounded">High</span>
+        <span *ngSwitchCase="'Medium'" class="bg-yellow-100 text-yellow-600 text-sm w-fit font-medium px-4 py-1.5 rounded">Medium</span>
+        <span *ngSwitchCase="'Low'" class="bg-green-100 text-green-500 text-sm w-fit font-medium px-4 py-1.5 rounded">Low</span>
+      </ng-container>
+      <button (click)="onCompleteTask()">
+        <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
+      </button>
+    </div>
+  </div>
+  

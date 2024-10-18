@@ -1,56 +1,45 @@
 <main>
   <section class="my-container">
 
-    <div class="flex flex-col md:flex-row gap-6">
+    <div class="flex flex-col md:flex-row gap-4">
       <!-- Todo -->
       <div class="flex flex-col bg-[#D4CEFF] inner-container md:w-1/4 gap-4 rounded-xl">
         <div class="flex gap-2 justify-between">
-          <h3 class="text-[#2c0fa1d6]">Todo</h3>
+          <h4 class="text-[#2c0fa1d6]">Todo</h4>
           <div class="flex gap-2">
             <fa-icon [icon]="faPlus" class="text-xl text-[#2c0fa1d6]"></fa-icon>
             <fa-icon [icon]="faEllipsis" class="text-xl text-[#2c0fa1d6]"></fa-icon>
           </div>
         </div>
         <!-- Cards -->
-        <div class="flex flex-col gap-4">
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span class="bg-pink-100 text-pink-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">High</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
+         @if (selectedTask) {
+          <app-task-item
+          [task]="selectedTask" 
+          (updateTask)="updateTask($event)">
+        </app-task-item>
+         } @else {
+          <div class="flex flex-col gap-4">
+            @for(taskItem of taskList; track taskItem.id){
+            @if (taskItem.status == 'todo') {
+            <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted($event)"></app-card>
+  
+            }
+            }
+            <div class="w-full">
+              <Button
+                class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#2c0fa1d6] outline-[#2c0fa1d6]">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                Add New Task</Button>
             </div>
           </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span
-                class="bg-orange-100 text-orange-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span class="bg-green-100 text-green-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Low</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="w-full">
-            <Button
-              class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#2c0fa1d6] outline-[#2c0fa1d6]">
-              <fa-icon [icon]="faPlus"></fa-icon>
-              Add New Task</Button>
-          </div>
-        </div>
+         }
+       
       </div>
 
       <!-- IN PROGRESS -->
       <div class="flex flex-col bg-[#CAE4FE] inner-container md:w-1/4 gap-4 rounded-xl items-center">
         <div class="flex gap-2 justify-between w-full">
-          <h3 class="text-textBlue">In progress</h3>
+          <h4 class="text-textBlue">In Progress</h4>
           <div class="flex gap-2">
             <fa-icon [icon]="faPlus" class="text-xl text-textBlue"></fa-icon>
             <fa-icon [icon]="faEllipsis" class="text-xl text-textBlue"></fa-icon>
@@ -58,31 +47,11 @@
         </div>
         <!-- Cards -->
         <div class="flex flex-col gap-4">
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize text-[#71b4f3] text-sm">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span class="bg-pink-100 text-pink-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">High</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize text-[#71b4f3] text-sm">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span
-                class="bg-orange-100 text-orange-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize text-[#71b4f3] text-sm">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span class="bg-green-100 text-green-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Low</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
+          @for(taskItem of taskList; track taskItem.id){
+          @if (taskItem.status == 'in-progress') {
+          <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted($event)"></app-card>
+
+          }}
         </div>
         <div class="w-full">
           <Button
@@ -93,44 +62,43 @@
       </div>
 
       <!-- Done -->
-      <div class="flex flex-col bg-[#D4CEFF] inner-container md:w-1/4 gap-4 rounded-xl">
+      <div class="flex flex-col bg-[#F6EAD1] inner-container md:w-1/4 gap-4 rounded-xl">
         <div class="flex gap-2 justify-between">
-          <h3 class="text-[#2c0fa1d6]">Done</h3>
-          <div class="flex gap-2">
-            <fa-icon [icon]="faPlus" class="text-xl text-[#2c0fa1d6]"></fa-icon>
-            <fa-icon [icon]="faEllipsis" class="text-xl text-[#2c0fa1d6]"></fa-icon>
+          <h4 class="text-[#D46302]">Done</h4>
+          <div class="flex gap-2 text-[#D35A05]">
+            <fa-icon [icon]="faPlus" class="text-xl"></fa-icon>
+            <fa-icon [icon]="faEllipsis" class="text-xl"></fa-icon>
           </div>
         </div>
         <!-- Cards -->
         <div class="flex flex-col gap-4">
+          @for(taskItem of taskList; track taskItem.id){
+          @if (taskItem.status == 'done') {
           <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize">tommorow 16:00</h6>
+            <h6 class="capitalize text-textBlue font-semibold">{{taskItem.todo}}</h6>
+            <h6 class="capitalize text-[#71b4f3] text-sm">{{taskItem.time | date:'dd-MMM-yy'}}</h6>
             <div class="flex justify-between">
+              @switch (taskItem.priority) {
+              @case ('High') {
               <span class="bg-pink-100 text-pink-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">High</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize">tommorow 16:00</h6>
-            <div class="flex justify-between">
+              }
+              @case ('Medium') {
               <span
-                class="bg-orange-100 text-orange-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize">tommorow 16:00</h6>
-            <div class="flex justify-between">
+                class="bg-yellow-100 text-yellow-600 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
+              }
+              @case ('Low') {
               <span class="bg-green-100 text-green-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Low</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
+              }
+              }
+              <!--  <button (click)="markAsCompleted(taskItem.id)">
+                <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
+              </button> -->
             </div>
           </div>
+          }}
           <div class="w-full">
             <Button
-              class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#2c0fa1d6] outline-[#2c0fa1d6]">
+              class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#D35A05] outline-[#D35A05]">
               <fa-icon [icon]="faPlus"></fa-icon>
               Add New Task</Button>
           </div>
@@ -138,45 +106,24 @@
       </div>
 
       <!-- Postponed -->
-      <div class="flex flex-col bg-[#CAE4FE] inner-container md:w-1/4 gap-4 rounded-xl items-center">
+      <div class="flex flex-col bg-[#FBC6C5] inner-container md:w-1/4 gap-4 rounded-xl items-center">
         <div class="flex gap-2 justify-between w-full">
-          <h3 class="text-textBlue">Postponed</h3>
-          <div class="flex gap-2">
-            <fa-icon [icon]="faPlus" class="text-xl text-textBlue"></fa-icon>
-            <fa-icon [icon]="faEllipsis" class="text-xl text-textBlue"></fa-icon>
+          <h4 class="text-[#C81413]">Postponed</h4>
+          <div class="flex gap-2 text-[#C81413]">
+            <fa-icon [icon]="faPlus" class="text-xl"></fa-icon>
+            <fa-icon [icon]="faEllipsis" class="text-xl"></fa-icon>
           </div>
         </div>
         <!-- Cards -->
         <div class="flex flex-col gap-4">
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize text-[#71b4f3] text-sm">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span class="bg-pink-100 text-pink-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">High</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize text-[#71b4f3] text-sm">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span
-                class="bg-orange-100 text-orange-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
-          <div class="flex flex-col gap-4 p-4 rounded-xl bg-white">
-            <h6 class="capitalize text-textBlue font-semibold">Create a preview from the last article from our blog</h6>
-            <h6 class="capitalize text-[#71b4f3] text-sm">tommorow 16:00</h6>
-            <div class="flex justify-between">
-              <span class="bg-green-100 text-green-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Low</span>
-              <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
-            </div>
-          </div>
+          @for(taskItem of taskList; track taskItem.id){
+          @if (taskItem.status == 'postponed') {
+          <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted($event)"></app-card>
+          }}
         </div>
         <div class="w-full">
           <Button
-            class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#71b4f3] outline-[#71b4f3]">
+            class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#C81413] outline-[#C81413]">
             <fa-icon [icon]="faPlus"></fa-icon>
             Add New Task</Button>
         </div>

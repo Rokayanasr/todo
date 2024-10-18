@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    background-color: #F2F8FD;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .my-container{
     @apply py-8 px-8 md:py-14 md:px-10
 }
@@ -29,6 +35,6 @@ h5 {
     @apply text-base md:text-xl font-medium;
 }
 h6 {
-    @apply text-sm md:text-lg;
+    @apply text-sm md:text-base;
     line-height: 22px;
 }
