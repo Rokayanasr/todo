@@ -9,7 +9,7 @@ Intuitive and user-friendly interface to manage your tasks.
 
 ## Planned Features (Future Releases)
 Full CRUD functionality (Create, Update, Delete) for tasks.
-Drag and drop between statuses
+Drag and drop between statuses.
 User authentication and role-based access (optional).
 Task filtering and sorting based on properties.
 
