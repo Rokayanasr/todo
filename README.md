@@ -8,7 +8,8 @@ Add properties like status (e.g., "todo", "completed") and priority (e.g., "high
 Intuitive and user-friendly interface to manage your tasks.
 
 ## Planned Features (Future Releases)
-Full CRUD functionality (Create, Read, Update, Delete) for tasks.
+Full CRUD functionality (Create, Update, Delete) for tasks.
+Drag and drop between statuses
 User authentication and role-based access (optional).
 Task filtering and sorting based on properties.
 
