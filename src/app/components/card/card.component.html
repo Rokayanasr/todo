@@ -1,7 +1,7 @@
 <button (click)="showDetails(task)" type="button" class="flex flex-col gap-4 p-4 rounded-xl bg-white w-full"
-    data-modal-target="defaultModal" data-modal-toggle="defaultModal">
-    <h6 class="capitalize text-start text-textBlue font-semibold">{{ task.todo }}</h6>
-    <h6 class="capitalize text-[#71b4f3] text-sm">{{ task.time | date: 'dd-MMM-yy' }}</h6>
+    >
+    <h6 data-modal-target="defaultModal" data-modal-toggle="defaultModal"  class="capitalize text-start text-textBlue font-semibold">{{ task.todo }}</h6>
+    <h6 data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="capitalize text-[#71b4f3] text-sm">{{ task.time | date: 'dd-MMM-yy' }}</h6>
     <div class="flex justify-between w-full">
         @switch (task.priority) {
         @case ('High') {
@@ -20,7 +20,7 @@
     </div>
 </button>
 
-<!-- Main modal -->
+<!-- task-detail modal -->
 <div id="defaultModal" tabindex="-1" aria-hidden="true"
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-2xl max-h-full">

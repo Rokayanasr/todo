@@ -11,14 +11,12 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { ITask } from '../../model/task';
-import { BrowserModule } from '@angular/platform-browser';
 import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-card',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent implements OnInit, OnChanges {
@@ -42,6 +40,5 @@ export class CardComponent implements OnInit, OnChanges {
     console.log(formattedDate);
     console.log(task);
     return formattedDate;
-
   }
 }
