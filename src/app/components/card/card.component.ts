@@ -4,11 +4,15 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnInit,
   Output,
 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { ITask } from '../../model/task';
+import { BrowserModule } from '@angular/platform-browser';
+import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -17,12 +21,27 @@ import { ITask } from '../../model/task';
   styleUrl: './card.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent {
+export class CardComponent implements OnInit, OnChanges {
   @Input() task!: ITask;
   faCheckCircle = faCheckCircle;
-  @Output() markAsCompleted = new EventEmitter<number>();
+  @Output() markAsCompletedCard = new EventEmitter<number>();
+  formattedDate!: string ;
 
+  ngOnInit(): void {
+    initFlowbite();
+  }
+  ngOnChanges(): void {
+    console.log(this.task);
+  }
   onCompleteTask() {
-    this.markAsCompleted.emit(this.task.id);
+    this.markAsCompletedCard.emit(this.task.id);
+  }
+
+  showDetails(task: any) {
+    let formattedDate = (task.time).toISOString().split('T')[0];
+    console.log(formattedDate);
+    console.log(task);
+    return formattedDate;
+
   }
 }

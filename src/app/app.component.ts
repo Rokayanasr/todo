@@ -9,13 +9,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { TodoService } from './services/todo.service';
 import { CommonModule, DatePipe } from '@angular/common';
-import { CardComponent } from "./components/card/card.component";
-import { TaskItemComponent } from "./components/task-item/task-item.component";
+import { CardComponent } from './components/card/card.component';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FontAwesomeModule, DatePipe, CardComponent, TaskItemComponent],
+  imports: [
+    RouterOutlet,
+    FontAwesomeModule,
+    DatePipe,
+    CardComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -30,9 +35,10 @@ export class AppComponent implements OnInit {
   faCheckCircle = faCheckCircle;
 
   ngOnInit(): void {
+    initFlowbite();
     this.loadAllTasks();
   }
-  
+
   loadAllTasks() {
     this.todoService.getAllTasks().subscribe(
       ({ todos }) => {
@@ -58,22 +64,11 @@ export class AppComponent implements OnInit {
       this.selectedTask.status = 'done';
       // this.loadAllTasks();
       console.log(this.selectedTask.status);
-      
     } else {
       console.error(`Task with ID ${id} could not be found`);
     }
   }
 
-  showTaskDetails(task: ITask) {
-    this.selectedTask = task;
-  }
 
-  // تحديث المهمة لما تتعدل في TaskDetailComponent
-  updateTask(updatedTask: ITask) {
-    const taskIndex = this.taskList.findIndex(taskItem => taskItem.id === updatedTask.id);
-    if (taskIndex > -1) {
-      this.taskList[taskIndex] = updatedTask;
-      this.selectedTask = undefined; // غلق شاشة التفاصيل بعد الحفظ
-    }
-  }
+
 }

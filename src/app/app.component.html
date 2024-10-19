@@ -12,28 +12,20 @@
           </div>
         </div>
         <!-- Cards -->
-         @if (selectedTask) {
-          <app-task-item
-          [task]="selectedTask" 
-          (updateTask)="updateTask($event)">
-        </app-task-item>
-         } @else {
-          <div class="flex flex-col gap-4">
-            @for(taskItem of taskList; track taskItem.id){
-            @if (taskItem.status == 'todo') {
-            <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted($event)"></app-card>
-  
-            }
-            }
-            <div class="w-full">
-              <Button
-                class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#2c0fa1d6] outline-[#2c0fa1d6]">
-                <fa-icon [icon]="faPlus"></fa-icon>
-                Add New Task</Button>
-            </div>
+        <div class="flex flex-col gap-4">
+          @for(taskItem of taskList; track taskItem.id){
+          @if (taskItem.status == 'todo') {
+          <app-card [task]="taskItem" (markAsCompletedCard)="markAsCompleted($event)"></app-card>
+
+          }
+          }
+          <div class="w-full">
+            <Button
+              class="bg-[#ffffff62] w-full outline-dashed rounded-xl py-2.5 font-medium outline-2 text-[#2c0fa1d6] outline-[#2c0fa1d6]">
+              <fa-icon [icon]="faPlus"></fa-icon>
+              Add New Task</Button>
           </div>
-         }
-       
+        </div>
       </div>
 
       <!-- IN PROGRESS -->
@@ -49,7 +41,7 @@
         <div class="flex flex-col gap-4">
           @for(taskItem of taskList; track taskItem.id){
           @if (taskItem.status == 'in-progress') {
-          <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted($event)"></app-card>
+          <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted(taskItem.id)"></app-card>
 
           }}
         </div>
@@ -79,16 +71,15 @@
             <h6 class="capitalize text-[#71b4f3] text-sm">{{taskItem.time | date:'dd-MMM-yy'}}</h6>
             <div class="flex justify-between">
               @switch (taskItem.priority) {
-              @case ('High') {
-              <span class="bg-pink-100 text-pink-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">High</span>
-              }
-              @case ('Medium') {
-              <span
-                class="bg-yellow-100 text-yellow-600 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
-              }
-              @case ('Low') {
-              <span class="bg-green-100 text-green-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Low</span>
-              }
+                @case ('High') {
+                    <span class="bg-pink-100 text-pink-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">High</span>
+                }
+                @case ('Medium') {
+                    <span class="bg-yellow-100 text-yellow-600 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Medium</span>
+                }
+                @case ('Low') {
+                    <span class="bg-green-100 text-green-500 text-sm w-fit font-medium me-2 px-4 py-1.5 rounded">Low</span>
+                }
               }
               <!--  <button (click)="markAsCompleted(taskItem.id)">
                 <fa-icon [icon]="faCheckCircle" class="text-xl text-textBlue"></fa-icon>
@@ -118,7 +109,7 @@
         <div class="flex flex-col gap-4">
           @for(taskItem of taskList; track taskItem.id){
           @if (taskItem.status == 'postponed') {
-          <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted($event)"></app-card>
+          <app-card [task]="taskItem" (markAsCompleted)="markAsCompleted(taskItem.id)"></app-card>
           }}
         </div>
         <div class="w-full">
