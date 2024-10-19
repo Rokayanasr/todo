@@ -1,6 +1,6 @@
 <button (click)="showDetails(task)" type="button" class="flex flex-col gap-4 p-4 rounded-xl bg-white w-full"
     >
-    <h6 data-modal-target="defaultModal" data-modal-toggle="defaultModal"  class="capitalize text-start text-textBlue font-semibold">{{ task.todo }}</h6>
+    <h6 data-modal-target="defaultModal" data-modal-toggle="defaultModal"  class="hover:underline capitalize text-start text-textBlue font-semibold">{{ task.todo }}</h6>
     <h6 data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="capitalize text-[#71b4f3] text-sm">{{ task.time | date: 'dd-MMM-yy' }}</h6>
     <div class="flex justify-between w-full">
         @switch (task.priority) {
