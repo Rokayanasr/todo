@@ -1,4 +1,22 @@
-# Todo
+## Description
+A simple and responsive to-do list application built with Angular, designed to display tasks fetched from an API. The app allows users to view task details, and manage properties like task status and priority.
+
+## Features
+Fetch tasks from an external API.
+Display task details including title, date, and priority.
+Add properties like status (e.g., "todo", "completed") and priority (e.g., "high", "medium", "low").
+Intuitive and user-friendly interface to manage your tasks.
+
+## Planned Features (Future Releases)
+Full CRUD functionality (Create, Read, Update, Delete) for tasks.
+User authentication and role-based access (optional).
+Task filtering and sorting based on properties.
+
+## Technologies Used
+Angular 18 – Front-end framework.
+Flowbite – For UI components and styling.
+FontAwesome – For icons.
+API Integration – Fetching tasks from an external API.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 
